@@ -1,0 +1,69 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% trans 'Items list' %}</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/flatly/bootstrap.min.css"/>
+    <style>
+        body {
+            padding-top: 20px;
+        }
+
+        .XS, .S, .M, .L, .XL {
+            width: 25px;
+            display: inline-block;
+        }
+
+        .XS {
+            background-color: #00E54E;
+        }
+
+        .S {
+            background-color: #38DD00;
+        }
+
+        .M {
+            background-color: #D2B100;
+        }
+
+        .L {
+            background-color: #C81300;
+        }
+
+        .XL {
+            background-color: #BF007D;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% for item in object_list %}
+                <div class="col-md-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ item.name }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{ item.description }}</p>
+
+                            <p>$ {{ item.cost }}</p>
+
+                            <p>{% trans 'Available sizes:' %}
+                                {% for size in item.sizes.all %}
+                                    {% with name=size.name %}
+                                        <span class="label label-success {{ name }}">{{ name }}</span>
+                                    {% endwith %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
