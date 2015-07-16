@@ -7,7 +7,10 @@ class SizeListingField(serializers.RelatedField):
         return value.name
 
     def to_internal_value(self, data):
-        return Size.objects.get(name=data)
+        try:
+            return Size.objects.get(name=data)
+        except Size.DoesNotExist:
+            raise serializers.ValidationError('Invalid value for size: "{}".'.format(data))
 
 
 class ItemSerializer(serializers.ModelSerializer):
