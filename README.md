@@ -21,7 +21,7 @@ Use `virtualenv` and install required packages:
     $ pip install -r requirements.txt
 
 Create an `.env` file with content (you can generate a Django secret
-key [here](http://www.miniwebtool.com/django-secret-key-generator/):
+key [here](http://www.miniwebtool.com/django-secret-key-generator/)):
 
     DATABASE_URL="sqlite:////path/to/db.sqlite3"
     SECRET_KEY="your_django_secret_key"
